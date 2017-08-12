@@ -1,0 +1,70 @@
+
+import java.util.Scanner;
+
+public class B {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
+        int fours = n;
+        int twos = 2 * n;
+        int ones = 4 * n;
+        boolean ok = true;
+        for (int i = 0; i < k; i++) {
+            int a = in.nextInt();
+            while (a > 0 && ok) {
+                if (a >= 4 && fours > 0) {
+                    fours -= 1;
+                    ones -= 2;
+                    a -= 4;
+                    continue;
+                }
+                if (fours > 0) {
+                    if (a == 3) {
+                        fours -= 1;
+                        ones -= 2;
+                        a -= 3;
+                        continue;
+                    }
+                    if (twos > 0) {
+                        twos -= 1;
+                        ones -= 1;
+                        a -= 2;
+                        continue;
+                    }
+                    if (a == 2) {
+                        fours -= 1;
+                        ones -= 2;
+                        a -= 4;
+                        continue;
+                    } else {
+                        fours -= 1;
+                        ones -= 1;
+                        twos += 1;
+                        a -= 4;
+                        continue;
+                    }
+                }
+                if (twos > 0) {
+                    twos -= 1;
+                    ones -= 1;
+                    a -= 2;
+                    continue;
+                }
+                if (a == 1 && ones > 0) {
+                    ones -= 1;
+                    a -= 1;
+                    continue;
+                }
+                ok = false;
+            }
+        }
+        if (ok) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+
+}

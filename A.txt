@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+
+public class A {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
+        int Aria = 0;
+        int Bran = 0;
+        int res = -1;
+        for (int i = 0; i < n; i++) {
+            int a = in.nextInt();
+            Aria += a;
+            if (Aria >= 8) {
+                Bran += 8;
+                Aria -= 8;
+            } else {
+                Bran += Aria;
+                Aria = 0;
+            }
+            if (Bran >= k) {
+                res = i + 1;
+                break;
+            }
+        }
+        System.out.println(res);
+    }
+}
